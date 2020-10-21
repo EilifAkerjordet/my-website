@@ -5,6 +5,7 @@ import { CacheProvider } from '@emotion/core'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import createCache from '@emotion/cache'
 import { lightTheme } from '../lib/theme'
+import Layout from '../components/Layout'
 
 export const cache = createCache()
 
@@ -27,7 +28,9 @@ export default function MyApp (props) {
       </Head>
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ThemeProvider>
     </CacheProvider>
   )

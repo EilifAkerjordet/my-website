@@ -1,12 +1,11 @@
 import Navbar from './navbar/Navbar'
 import Footer from './Footer'
 
-const Layout = ({ children, layoutProps }) => {
+const Layout = ({ children }) => {
   return (
     <>
-      <Navbar layoutProps={layoutProps} />
+      <Navbar />
       {children}
-      <Footer />
     </>
   )
 }

@@ -10,13 +10,13 @@ const Index = () => {
     <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
       <Parallax
         ref={parallaxRef}
-        className='MuiPaper-root MuiPaper-rounded MuiPaper-elevation20'
+        className='MuiPaper-root MuiPaper-rounded MuiPaper-elevation24'
         pages={3}
         style={{
           backgroundColor: '#805E73',
-          width: '80vw',
-          height: '65vh',
-          marginTop: '35vh'
+          width: '90vw',
+          height: '70vh',
+          marginTop: '30vh'
         }}
       >
         <ParallaxLayer offset={1} speed={1} />
