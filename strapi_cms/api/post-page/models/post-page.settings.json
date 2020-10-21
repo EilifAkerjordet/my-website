@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "post_pages",
+  "info": {
+    "name": "Post Page"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "bannerPhoto": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true
+    }
+  }
+}

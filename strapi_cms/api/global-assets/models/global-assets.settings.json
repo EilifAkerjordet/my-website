@@ -1,0 +1,34 @@
+{
+  "kind": "singleType",
+  "collectionName": "global_assets",
+  "info": {
+    "name": "Global Assets"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "logoDark": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "logoLight": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "logoText": {
+      "type": "string"
+    }
+  }
+}

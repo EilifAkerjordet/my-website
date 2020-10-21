@@ -1,0 +1,46 @@
+{
+  "kind": "singleType",
+  "collectionName": "category_pages",
+  "info": {
+    "name": "Category page"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "coverPhoto": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true
+    },
+    "categories": {
+      "collection": "category"
+    },
+    "content_types": {
+      "collection": "content-type"
+    },
+    "headerQuote": {
+      "type": "string",
+      "required": true
+    },
+    "popularPosts": {
+      "collection": "content"
+    },
+    "popularPostsDisplayName": {
+      "type": "string",
+      "required": true
+    },
+    "titleText": {
+      "type": "string",
+      "required": true
+    },
+    "carouselPosts": {
+      "collection": "content"
+    }
+  }
+}

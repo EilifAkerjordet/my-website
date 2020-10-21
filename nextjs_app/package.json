@@ -1,0 +1,33 @@
+{
+  "name": "personal-website",
+  "version": "1.0.0",
+  "description": "My personal website",
+  "main": "index.jsx",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "fix": "standard --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/cache": "latest",
+    "@emotion/core": "latest",
+    "@emotion/styled": "latest",
+    "clsx": "latest",
+    "create-emotion-server": "latest",
+    "@material-ui/core": "next",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "axios": "^0.20.0",
+    "next": "^9.5.3",
+    "prop-types": "^15.6.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-spring": "^7.2.8"
+  },
+  "devDependencies": {
+    "standard": "^14.3.4"
+  }
+}

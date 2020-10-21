@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+
+  nginx:
+    container_name: nginx
+    build:
+      context: './nginx'
+      dockerfile: Dockerfile.prod
+    depends_on:
+      - strapi
+      - nextjs
+    ports:
+      - '8080:8080'
+
+  nextjs:
+    container_name: nextjs
+    build:
+      context: './nextjs_app'
+      dockerfile: Dockerfile.prod
+    depends_on:
+      - strapi
+    environment:
+      - NODE_ENV=production
+
+  strapi:
+    container_name: strapi
+    build:
+      context: './strapi_cms'
+      dockerfile: Dockerfile.prod
+    environment:
+      - NODE_ENV=production

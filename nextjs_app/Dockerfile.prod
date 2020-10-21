@@ -1,0 +1,25 @@
+# Base on offical Node.js Alpine image
+FROM node:alpine
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies for imagemin
+RUN apk update && apk add libpng-dev autoconf automake make g++ libtool nasm
+
+COPY ./package.json ./
+
+# Install dependencies
+RUN yarn install --production=true
+
+# Copy all files
+COPY ./ ./
+
+# Build app
+RUN yarn build
+
+# Expose the listening port
+EXPOSE 3000
+
+# Run npm start script when container starts
+CMD [ "yarn", "start" ]
