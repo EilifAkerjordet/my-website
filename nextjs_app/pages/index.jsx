@@ -81,20 +81,42 @@ const Index = ({ data }) => {
         />
 
         <ParallaxLayer
-          offset={1.1}
+          offset={1.25}
           speed={-0.1}
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}
         >
-          <Grid container>
-            <Grid item xs={12} alignItems='center' justify='space-around' container spacing={2}>
-              <Grid item xs={1}>
-                <Paper style={{ padding: theme.spacing(1) }}>
-                  <Typography align='center' variant='h6'>General:</Typography>
+          <Grid container style={{ padding: theme.spacing(1) }}>
+            <Grid item xs={12} container spacing={2} alignItems='center' justify='center'>
+              <Grid item xs={12} lg>
+                <Paper style={{ maxWidth: '150px', padding: theme.spacing(1), marginLeft: theme.spacing(4) }}>
+                  <Typography align='center'>General:</Typography>
                 </Paper>
               </Grid>
               {data.general_logos.map(logo => (
-                <Grid key={logo.id} item xs={2}>
+                <Grid key={logo.id} item xs={3} lg>
                   <img
+                    src={logo.url}
+                    alt={logo.alternativeText}
+                    style={{
+                      width: '100%',
+                      maxWidth: theme.spacing(13)
+                    }}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+            <Grid container justify='flex-start' spacing={2} item xs={12} sm={6} md={4}>
+              <Grid item xs={12}>
+                <Paper>
+                  <Typography align='center'>Technologies and frameworks</Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper>
+                  <Typography align='center'>Front-end</Typography>
+                </Paper>
+                {data.frontend_logos.map(logo => (
+                  <img
+                    key={logo.id}
                     src={logo.url}
                     alt={logo.alternativeText}
                     style={{
@@ -102,14 +124,30 @@ const Index = ({ data }) => {
                       maxWidth: theme.spacing(15)
                     }}
                   />
-                </Grid>
-              ))}
+                ))}
+              </Grid>
+              <Grid item xs={6}>
+                <Paper style={{ width: '100%' }}>
+                  <Typography align='center'>Back-end</Typography>
+                </Paper>
+                {data.backend_logos.map(logo => (
+                  <img
+                    key={logo.id}
+                    src={logo.url}
+                    alt={logo.alternativeText}
+                    style={{
+                      width: '100%',
+                      maxWidth: theme.spacing(15)
+                    }}
+                  />
+                ))}
+              </Grid>
             </Grid>
           </Grid>
         </ParallaxLayer>
 
         <ParallaxLayer
-          offset={0.99}
+          offset={0.93}
           speed={0.3}
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
@@ -123,7 +161,6 @@ const Index = ({ data }) => {
           >
             <Typography
               align='center'
-              variant='h6'
               style={{
                 width: '100%'
               }}

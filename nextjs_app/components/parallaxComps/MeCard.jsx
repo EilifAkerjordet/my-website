@@ -50,12 +50,7 @@ const MeCard = ({ text, name, displayPic }) => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography
-            style={{
-              fontSize: '14px'
-            }}
-          >{text}
-          </Typography>
+          <Typography>{text} </Typography>
         </Grid>
       </Grid>
     </Paper>
