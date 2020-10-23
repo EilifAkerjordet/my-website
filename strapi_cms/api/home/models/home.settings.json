@@ -9,21 +9,68 @@
     "timestamps": true
   },
   "attributes": {
-    "hero": {
+    "general_logos": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "my_name": {
+      "type": "string"
+    },
+    "text_about_me": {
+      "type": "text"
+    },
+    "display_pic": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
         "images"
       ],
       "plugin": "upload",
-      "required": true
+      "required": false
     },
-    "featured_items": {
-      "collection": "featured-items"
+    "parallax_2_header": {
+      "type": "string"
     },
-    "heroText": {
-      "type": "string",
-      "required": true
+    "frontend_logos": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "tools_logos": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "workflowTools_logos": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "backend_logos": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
     }
   }
 }

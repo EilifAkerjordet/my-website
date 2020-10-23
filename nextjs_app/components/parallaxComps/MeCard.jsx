@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const MeCard = () => {
+const MeCard = ({ text, name, displayPic }) => {
   const theme = useTheme()
   const classes = useStyles()
   return (
@@ -31,7 +31,7 @@ const MeCard = () => {
           <Avatar
             alt='eilif akerjordet'
             className={classes.large}
-            src='/static/PB.JPG'
+            src={displayPic.url}
             style={{
               marginLeft: '-25px',
               marginTop: '-70px'
@@ -46,7 +46,7 @@ const MeCard = () => {
               width: '100%'
             }}
           >
-          Eilif Akerjordet
+            {name}
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -54,7 +54,7 @@ const MeCard = () => {
             style={{
               fontSize: '14px'
             }}
-          >I am a Full Stack developer and hobby programmer who decided to turn the hobby into a profession. Working with people, building useful applications and automating processes are thing I am enthusiastic about. Previously a finance student before I decided to pursue a career in tech. When I am not in front of the computer, I enjoy the outdoors. Hiking, skiing and snowboarding.
+          >{text}
           </Typography>
         </Grid>
       </Grid>

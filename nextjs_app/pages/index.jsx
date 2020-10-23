@@ -4,11 +4,12 @@ import { useTheme } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+import axios from 'axios'
 import MeCard from '../components/parallaxComps/MeCard'
 
 const url = (name, wrap = false) => `${wrap ? 'url(' : ''}https://awv3node-homepage.surge.sh/build/assets/${name}.svg${wrap ? ')' : ''}`
 
-const Index = () => {
+const Index = ({ data }) => {
   const parallaxRef = useRef(null)
   const theme = useTheme()
   return (
@@ -24,9 +25,9 @@ const Index = () => {
         }}
       >
         {/* PAGE BACKGROUNDS */}
+        <ParallaxLayer offset={0} speed={0} factor={3} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
         <ParallaxLayer offset={1} speed={1} style={{ backgroundColor: '#87BCDE' }} />
         <ParallaxLayer offset={2} speed={1} style={{ backgroundColor: '#0080FF' }} />
-        <ParallaxLayer offset={0} speed={0} factor={3} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
         {/* PAGE BACKGROUNDS */}
 
         <ParallaxLayer offset={1} speed={0.8} style={{ opacity: 0.1 }}>
@@ -66,7 +67,7 @@ const Index = () => {
           onClick={() => parallaxRef.current.scrollTo(1)}
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
-          <MeCard />
+          <MeCard displayPic={data.display_pic} text={data.text_about_me} name={data.my_name} />
         </ParallaxLayer>
 
         <ParallaxLayer
@@ -80,33 +81,40 @@ const Index = () => {
         />
 
         <ParallaxLayer
-          offset={1.3}
-          speed={1}
+          offset={1.1}
+          speed={-0.1}
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}
         >
           <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-            <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <img src='/static/techIcons/R-logo.png' style={{ width: '5%' }} />
               <img src='/static/techIcons/htmlcssjs.png' style={{ width: '10%' }} />
+              <img src='/static/techIcons/node.png' style={{ width: '5%' }} />
+              <img src='/static/techIcons/seo.png' style={{ width: '5%' }} />
             </div>
 
             <img src='/static/techIcons/jquery.png' style={{ width: '15%' }} />
             <img src='/static/techIcons/React_logo_wordmark.png' style={{ width: '15%' }} />
             <img src='/static/techIcons/redux.png' style={{ width: '15%' }} />
+            <img src='/static/techIcons/nextjs.png' style={{ width: '10%' }} />
             <div style={{ width: '8%', alignSelf: 'flex-end' }}>
               <img src='/static/techIcons/materialui.png' style={{ width: '100%' }} />
               <Typography align='center' variant='h5' style={{ marginTop: '-25px' }}>Material UI</Typography>
             </div>
-            <img src='/static/techIcons/nextjs.png' style={{ width: '10%' }} />
             <img src='/static/techIcons/mongodb-logo.png' style={{ width: '15%' }} />
             <img src='/static/techIcons/Expressjs.png' style={{ width: '15%' }} />
             <img src='/static/techIcons/docker.png' style={{ width: '10%' }} />
             <img src='/static/techIcons/postgresql-logo.png' style={{ width: '10%' }} />
             <img src='/static/techIcons/firebase.png' style={{ width: '15%' }} />
             <img src='/static/techIcons/handlebars-logo.png' style={{ width: '15%' }} />
+            <img src='/static/techIcons/socket.png' style={{ width: '10%' }} />
+            <img src='/static/techIcons/strapi.png' style={{ width: '10%' }} />
+            <img src='/static/techIcons/nginx.png' style={{ width: '10%' }} />
             <img src='/static/techIcons/git.png' style={{ width: '15%' }} />
             <img src='/static/techIcons/tdd.png' style={{ width: '8%' }} />
             <img src='/static/techIcons/agile.png' style={{ width: '10%' }} />
+            <img src='/static/techIcons/linux.png' style={{ width: '10%' }} />
+            <img src='/static/techIcons/vim.png' style={{ width: '5%' }} />
           </div>
         </ParallaxLayer>
 
@@ -130,7 +138,7 @@ const Index = () => {
                 width: '100%'
               }}
             >
-          Some of the tools and technologies I have experience with
+              {data.parallax_2_header}
             </Typography>
           </Paper>
 
@@ -148,6 +156,15 @@ const Index = () => {
       </Parallax>
     </>
   )
+}
+
+export async function getServerSideProps () {
+  try {
+    const { data } = await axios.get(`${process.env.API_URL}/home`)
+    return { props: { data } }
+  } catch {
+    return { props: { data: {} } }
+  }
 }
 
 export default Index
