@@ -25,9 +25,9 @@ const Index = ({ data }) => {
         }}
       >
         {/* PAGE BACKGROUNDS */}
-        <ParallaxLayer offset={0} speed={0} factor={3} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
         <ParallaxLayer offset={1} speed={1} style={{ backgroundColor: '#87BCDE' }} />
         <ParallaxLayer offset={2} speed={1} style={{ backgroundColor: '#0080FF' }} />
+        <ParallaxLayer offset={0} speed={0} factor={3} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
         {/* PAGE BACKGROUNDS */}
 
         <ParallaxLayer offset={1} speed={0.8} style={{ opacity: 0.1 }}>
@@ -85,37 +85,27 @@ const Index = ({ data }) => {
           speed={-0.1}
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <img src='/static/techIcons/R-logo.png' style={{ width: '5%' }} />
-              <img src='/static/techIcons/htmlcssjs.png' style={{ width: '10%' }} />
-              <img src='/static/techIcons/node.png' style={{ width: '5%' }} />
-              <img src='/static/techIcons/seo.png' style={{ width: '5%' }} />
-            </div>
-
-            <img src='/static/techIcons/jquery.png' style={{ width: '15%' }} />
-            <img src='/static/techIcons/React_logo_wordmark.png' style={{ width: '15%' }} />
-            <img src='/static/techIcons/redux.png' style={{ width: '15%' }} />
-            <img src='/static/techIcons/nextjs.png' style={{ width: '10%' }} />
-            <div style={{ width: '8%', alignSelf: 'flex-end' }}>
-              <img src='/static/techIcons/materialui.png' style={{ width: '100%' }} />
-              <Typography align='center' variant='h5' style={{ marginTop: '-25px' }}>Material UI</Typography>
-            </div>
-            <img src='/static/techIcons/mongodb-logo.png' style={{ width: '15%' }} />
-            <img src='/static/techIcons/Expressjs.png' style={{ width: '15%' }} />
-            <img src='/static/techIcons/docker.png' style={{ width: '10%' }} />
-            <img src='/static/techIcons/postgresql-logo.png' style={{ width: '10%' }} />
-            <img src='/static/techIcons/firebase.png' style={{ width: '15%' }} />
-            <img src='/static/techIcons/handlebars-logo.png' style={{ width: '15%' }} />
-            <img src='/static/techIcons/socket.png' style={{ width: '10%' }} />
-            <img src='/static/techIcons/strapi.png' style={{ width: '10%' }} />
-            <img src='/static/techIcons/nginx.png' style={{ width: '10%' }} />
-            <img src='/static/techIcons/git.png' style={{ width: '15%' }} />
-            <img src='/static/techIcons/tdd.png' style={{ width: '8%' }} />
-            <img src='/static/techIcons/agile.png' style={{ width: '10%' }} />
-            <img src='/static/techIcons/linux.png' style={{ width: '10%' }} />
-            <img src='/static/techIcons/vim.png' style={{ width: '5%' }} />
-          </div>
+          <Grid container>
+            <Grid item xs={12} alignItems='center' justify='space-around' container spacing={2}>
+              <Grid item xs={1}>
+                <Paper style={{ padding: theme.spacing(1) }}>
+                  <Typography align='center' variant='h6'>General:</Typography>
+                </Paper>
+              </Grid>
+              {data.general_logos.map(logo => (
+                <Grid key={logo.id} item xs={2}>
+                  <img
+                    src={logo.url}
+                    alt={logo.alternativeText}
+                    style={{
+                      width: '100%',
+                      maxWidth: theme.spacing(15)
+                    }}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
         </ParallaxLayer>
 
         <ParallaxLayer
