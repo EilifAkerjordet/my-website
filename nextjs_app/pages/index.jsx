@@ -1,16 +1,19 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Parallax, ParallaxLayer } from 'react-spring/addons.cjs'
 import { useTheme } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
-import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import axios from 'axios'
 import MeCard from '../components/parallaxComps/MeCard'
+import SwitchTechButton from '../components/SwitchTechButton'
+
+import TechnologiesAndFrameWorks from '../components/TechnologiesAndFrameWorks'
 
 const url = (name, wrap = false) => `${wrap ? 'url(' : ''}https://awv3node-homepage.surge.sh/build/assets/${name}.svg${wrap ? ')' : ''}`
 
 const Index = ({ data }) => {
   const parallaxRef = useRef(null)
+  const [techComp, setTechComp] = useState('center')
   const theme = useTheme()
   return (
     <>
@@ -71,6 +74,15 @@ const Index = ({ data }) => {
         </ParallaxLayer>
 
         <ParallaxLayer
+          offset={0.2}
+          speed={-0.2}
+          onClick={() => parallaxRef.current.scrollTo(1)}
+          style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center' }}
+        >
+          <Typography variant='h1'>Hi, I'm Eilif!</Typography>
+        </ParallaxLayer>
+
+        <ParallaxLayer
           offset={2}
           speed={-0.3}
           style={{
@@ -81,69 +93,26 @@ const Index = ({ data }) => {
         />
 
         <ParallaxLayer
-          offset={1.25}
+          offset={0.7}
           speed={-0.1}
+          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1 }}
         >
-          <Grid container style={{ padding: theme.spacing(1) }}>
-            <Grid item xs={12} container spacing={2} alignItems='center' justify='center'>
-              <Grid item xs={12} lg>
-                <Paper style={{ maxWidth: '150px', padding: theme.spacing(1), marginLeft: theme.spacing(4) }}>
-                  <Typography align='center'>General:</Typography>
-                </Paper>
-              </Grid>
-              {data.general_logos.map(logo => (
-                <Grid key={logo.id} item xs={3} lg>
-                  <img
-                    src={logo.url}
-                    alt={logo.alternativeText}
-                    style={{
-                      width: '100%',
-                      maxWidth: theme.spacing(13)
-                    }}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-            <Grid container justify='flex-start' spacing={2} item xs={12} sm={6} md={4}>
-              <Grid item xs={12}>
-                <Paper>
-                  <Typography align='center'>Technologies and frameworks</Typography>
-                </Paper>
-              </Grid>
-              <Grid item xs={6}>
-                <Paper>
-                  <Typography align='center'>Front-end</Typography>
-                </Paper>
-                {data.frontend_logos.map(logo => (
-                  <img
-                    key={logo.id}
-                    src={logo.url}
-                    alt={logo.alternativeText}
-                    style={{
-                      width: '100%',
-                      maxWidth: theme.spacing(15)
-                    }}
-                  />
-                ))}
-              </Grid>
-              <Grid item xs={6}>
-                <Paper style={{ width: '100%' }}>
-                  <Typography align='center'>Back-end</Typography>
-                </Paper>
-                {data.backend_logos.map(logo => (
-                  <img
-                    key={logo.id}
-                    src={logo.url}
-                    alt={logo.alternativeText}
-                    style={{
-                      width: '100%',
-                      maxWidth: theme.spacing(15)
-                    }}
-                  />
-                ))}
-              </Grid>
-            </Grid>
-          </Grid>
+          <SwitchTechButton setTechComp={setTechComp} />
+        </ParallaxLayer>
+
+        <ParallaxLayer
+          offset={1.35}
+          speed={0.7}
+        >
+          {techComp === 'center' && (
+            <TechnologiesAndFrameWorks logosTwo={data.backend_logos} logosOne={data.frontend_logos} />
+          )}
+          {techComp === 'left' && (
+            <TechnologiesAndFrameWorks logosOne={data.general_logos} />
+          )}
+          {techComp === 'right' && (
+            <TechnologiesAndFrameWorks logosOne={data.tools_logos} />
+          )}
         </ParallaxLayer>
 
         <ParallaxLayer
@@ -151,24 +120,18 @@ const Index = ({ data }) => {
           speed={0.3}
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
-          <Paper
-            elevation={4}
+          <Typography
+            align='center'
+            component='h1'
+            gutterBottom
+            variant='h3'
             style={{
-              maxWidth: '600px',
-              padding: theme.spacing(2),
-              margin: theme.spacing(1)
+              width: '100%',
+              fontWeight: 100
             }}
           >
-            <Typography
-              align='center'
-              style={{
-                width: '100%'
-              }}
-            >
-              {data.parallax_2_header}
-            </Typography>
-          </Paper>
-
+            {data.parallax_2_header}
+          </Typography>
         </ParallaxLayer>
 
         <ParallaxLayer
