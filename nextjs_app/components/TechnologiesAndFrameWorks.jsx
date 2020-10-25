@@ -8,43 +8,53 @@ import { Spring } from 'react-spring'
 const LogoPaper = ({ logo }) => {
   const theme = useTheme()
   return (
-    <Paper style={{ borderRadius: '50%', height: '100%', width: '100%', maxWidth: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <img src={logo.url} alt={logo.alternativeText} style={{ width: '100%', maxWidth: theme.spacing(15), marginLeft: theme.spacing(1), marginRight: theme.spacing(1) }} />
-    </Paper>
+    <img src={logo.url} alt={logo.alternativeText} style={{ width: '100%', maxWidth: theme.spacing(13) }} />
   )
 }
 
-const TechnologiesAndFrameWorks = ({ logosOne, logosTwo }) => {
+const TechnologiesAndFrameWorks = ({ logosOne, logosTwo, textOne, textTwo }) => {
   const theme = useTheme()
   return (
-    <>
-      <Spring
-        from={{ opacity: 0 }}
-        to={{ opacity: 1 }}
-      >
-        {props => (
-          <Grid container spacing={5} style={{ ...props, justifyContent: 'center' }}>
-            <Grid item xs={12} container spacing={2} style={{ justifyContent: 'center' }}>
-              {logosOne.map(logo => (
-                <Grid key={logo.id} item xs>
-                  <LogoPaper logo={logo} />
-                </Grid>
-              ))}
+    <Spring
+      from={{ opacity: 0 }}
+      to={{ opacity: 1 }}
+    >
+      {props => (
+        <Paper
+          elevation={4} style={{
+            ...props,
+            width: '700px',
+            minWidth: '310px',
+            padding: theme.spacing(2)
+          }}
+        >
+          <Grid container wrap='wrap' spacing={2} justify='space-around' alignItems='center'>
+            <Grid item xs={12}>
+              <Typography gutterBottom align='center'>{textOne}</Typography>
+              <Divider />
             </Grid>
-
+            {logosOne.map(logo => (
+              <Grid key={logo.id} item xs={3}>
+                <LogoPaper logo={logo} />
+              </Grid>
+            ))}
             {logosTwo && (
-              <Grid item xs={12} container spacing={2}>
+              <>
+                <Grid item xs={12}>
+                  <Typography gutterBottom align='center'>{textTwo}</Typography>
+                  <Divider />
+                </Grid>
                 {logosTwo.map(logo => (
-                  <Grid key={logo.id} item xs>
+                  <Grid key={logo.id} item xs={3}>
                     <LogoPaper logo={logo} />
                   </Grid>
                 ))}
-              </Grid>
+              </>
             )}
           </Grid>
-        )}
-      </Spring>
-    </>
+        </Paper>
+      )}
+    </Spring>
   )
 }
 

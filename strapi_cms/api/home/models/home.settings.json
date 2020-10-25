@@ -71,6 +71,9 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "values": {
+      "collection": "values"
     }
   }
 }

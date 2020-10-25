@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
 import Typography from '@material-ui/core/Typography'
@@ -11,35 +10,29 @@ const useStyles = makeStyles({
   }
 })
 
-const SwitchTechButton = ({ style, setTechComp }) => {
-  const [selected, setSelected] = useState('center')
+const SwitchTechButton = ({ setTechComp, techComp }) => {
   const classes = useStyles()
 
   const handleChange = (event, selectedEl) => {
     event.stopPropagation()
-    setSelected(selectedEl)
+    setTechComp(selectedEl)
   }
-
-  useEffect(() => {
-    setTechComp(selected)
-  }, [selected])
 
   return (
     <Paper>
       <ToggleButtonGroup
         exclusive
-        value={selected}
+        value={techComp}
         onChange={handleChange}
         aria-label='view technologies'
-        style={style}
       >
-        <ToggleButton disabled={selected === 'left'} className={classes.text} value='left' aria-label='General technologies'>
+        <ToggleButton className={classes.text} value='left' aria-label='General technologies'>
           <Typography>General</Typography>
         </ToggleButton>
-        <ToggleButton disabled={selected === 'center'} className={classes.text} value='center' aria-label='Technologies and frameworks'>
+        <ToggleButton className={classes.text} value='center' aria-label='Technologies and frameworks'>
           <Typography>Technologies and frameworks</Typography>
         </ToggleButton>
-        <ToggleButton disabled={selected === 'right'} className={classes.text} value='right' aria-label='Tools'>
+        <ToggleButton className={classes.text} value='right' aria-label='Tools'>
           <Typography>Tools</Typography>
         </ToggleButton>
       </ToggleButtonGroup>

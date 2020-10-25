@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "values",
+  "info": {
+    "name": "values"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "value_title": {
+      "type": "string"
+    },
+    "value_text": {
+      "type": "text"
+    },
+    "material_ui_icon_name": {
+      "type": "string"
+    }
+  }
+}

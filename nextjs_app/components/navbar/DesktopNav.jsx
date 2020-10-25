@@ -1,18 +1,10 @@
-import { useTheme } from '@material-ui/core'
 import Link from 'next/link'
-import ListItemText from '@material-ui/core/ListItemText'
 import IconButton from '@material-ui/core/IconButton'
-import ListItemLink from '../ListItemLink'
 import Typography from '@material-ui/core/Typography'
+import GitHubIcon from '@material-ui/icons/GitHub'
+import LinkedInIcon from '@material-ui/icons/LinkedIn'
 
 const DesktopNav = () => {
-  const theme = useTheme()
-
-  const linkItemStyle = {
-    marginRight: theme.spacing(2),
-    marginLeft: theme.spacing(2),
-    width: 'auto'
-  }
   return (
     <>
       <Link as='/' href='/'>
@@ -25,13 +17,17 @@ const DesktopNav = () => {
 
       <div className='filler' style={{ flexGrow: 1 }} />
 
-      <ListItemLink style={linkItemStyle} as='/' href='/'>
-        <ListItemText primary='hello' />
-      </ListItemLink>
+      <a href='https://github.com/EilifAkerjordet' target='_blank' rel='noopener noreferrer'style={{ textDecoration: 'none', color: 'inherit' }}>
+        <IconButton edge='start' aria-label='Home button'>
+          <GitHubIcon />
+        </IconButton>
+      </a>
 
-      <ListItemLink style={linkItemStyle} as='/about' href='/about'>
-        <ListItemText primary='About' />
-      </ListItemLink>
+      <a href='https://www.linkedin.com/in/eilif-akerjordet/' target='_blank' rel='noopener noreferrer' style={{ textDecoration: 'none', color: 'inherit' }}>
+        <IconButton edge='start' aria-label='Home button'>
+          <LinkedInIcon />
+        </IconButton>
+      </a>
     </>
 
   )
