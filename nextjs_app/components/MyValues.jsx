@@ -2,7 +2,6 @@ import Icon from '@material-ui/core/Icon'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Typography'
 import { useTheme } from '@material-ui/core'
 
 const MyValues = ({ values }) => {

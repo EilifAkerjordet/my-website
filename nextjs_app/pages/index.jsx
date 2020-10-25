@@ -19,7 +19,7 @@ const Index = ({ data }) => {
   return (
     <Parallax
       ref={parallaxRef}
-      pages={4}
+      pages={5}
       style={{
         backgroundColor: '#6593F5',
         height: '95vh',
@@ -31,38 +31,9 @@ const Index = ({ data }) => {
       <ParallaxLayer offset={1} speed={1} style={{ backgroundColor: '#87BCDE' }} />
       <ParallaxLayer offset={2} speed={1} style={{ backgroundColor: '#0080FF' }} />
       <ParallaxLayer offset={3} speed={1} style={{ backgroundColor: '#0080FF' }} />
+      <ParallaxLayer offset={4} speed={1} style={{ backgroundColor: '#0080FF' }} />
       <ParallaxLayer offset={0} speed={0} factor={4} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
       {/* PAGE BACKGROUNDS */}
-
-      <ParallaxLayer offset={1} speed={0.8} style={{ opacity: 0.1 }}>
-        <img src={url('cloud')} style={{ display: 'block', width: '20%', marginLeft: '55%' }} />
-        <img src={url('cloud')} style={{ display: 'block', width: '10%', marginLeft: '15%' }} />
-      </ParallaxLayer>
-
-      <ParallaxLayer offset={1.75} speed={0.5} style={{ opacity: 0.1 }}>
-        <img src={url('cloud')} style={{ display: 'block', width: '20%', marginLeft: '70%' }} />
-        <img src={url('cloud')} style={{ display: 'block', width: '20%', marginLeft: '40%' }} />
-      </ParallaxLayer>
-
-      <ParallaxLayer offset={1} speed={0.2} style={{ opacity: 0.2 }}>
-        <img src={url('cloud')} style={{ display: 'block', width: '10%', marginLeft: '10%' }} />
-        <img src={url('cloud')} style={{ display: 'block', width: '20%', marginLeft: '75%' }} />
-      </ParallaxLayer>
-
-      <ParallaxLayer offset={1.6} speed={-0.1} style={{ opacity: 0.4 }}>
-        <img src={url('cloud')} style={{ display: 'block', width: '20%', marginLeft: '60%' }} />
-        <img src={url('cloud')} style={{ display: 'block', width: '25%', marginLeft: '30%' }} />
-        <img src={url('cloud')} style={{ display: 'block', width: '10%', marginLeft: '80%' }} />
-      </ParallaxLayer>
-
-      <ParallaxLayer offset={2.6} speed={0.4} style={{ opacity: 0.6 }}>
-        <img src={url('cloud')} style={{ display: 'block', width: '20%', marginLeft: '5%' }} />
-        <img src={url('cloud')} style={{ display: 'block', width: '15%', marginLeft: '75%' }} />
-      </ParallaxLayer>
-
-      <ParallaxLayer offset={2.5} speed={-0.4} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
-        <img src={url('earth')} style={{ width: '60%' }} />
-      </ParallaxLayer>
 
       {/* PAGE CONTENT */}
       <ParallaxLayer
@@ -82,7 +53,6 @@ const Index = ({ data }) => {
       >
         <MeCard displayPic={data.display_pic} text={data.text_about_me} name={data.my_name} />
       </ParallaxLayer>
-
 
       <ParallaxLayer
         offset={0.93}
@@ -140,12 +110,21 @@ const Index = ({ data }) => {
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={3}
-        speed={0.5}
+        offset={2.93}
+        speed={0.3}
         onClick={() => parallaxRef.current.scrollTo(0)}
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
       >
-        <ProjectTimeline />
+        <Typography gutterBottom variant='h4' style={{ fontWeight: 100 }}>Career / Project timeline</Typography>
+      </ParallaxLayer>
+
+      <ParallaxLayer
+        offset={3.2}
+        speed={-0.1}
+        onClick={() => parallaxRef.current.scrollTo(0)}
+        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}
+      >
+        <ProjectTimeline projects={data.projects} />
       </ParallaxLayer>
       {/* PAGE CONTENT */}
     </Parallax>
@@ -155,7 +134,8 @@ const Index = ({ data }) => {
 export async function getServerSideProps () {
   try {
     const { data } = await axios.get(`${process.env.API_URL}/home`)
-    return { props: { data } }
+    const sortedProjects = data.projects.sort((a, b) => new Date(b.date) - new Date(a.date))
+    return { props: { data: { ...data, projects: sortedProjects } } }
   } catch {
     return { props: { data: {} } }
   }

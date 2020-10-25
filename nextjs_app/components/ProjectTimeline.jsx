@@ -1,4 +1,3 @@
-import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Timeline from '@material-ui/lab/Timeline'
 import TimelineItem from '@material-ui/lab/TimelineItem'
@@ -7,12 +6,12 @@ import TimelineConnector from '@material-ui/lab/TimelineConnector'
 import TimelineContent from '@material-ui/lab/TimelineContent'
 import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent'
 import TimelineDot from '@material-ui/lab/TimelineDot'
-import FastfoodIcon from '@material-ui/icons/Fastfood'
-import LaptopMacIcon from '@material-ui/icons/LaptopMac'
-import HotelIcon from '@material-ui/icons/Hotel'
-import RepeatIcon from '@material-ui/icons/Repeat'
+import Icon from '@material-ui/core/Icon'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
+import GitHubIcon from '@material-ui/icons/GitHub'
+import IconButton from '@material-ui/core/IconButton'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -23,84 +22,55 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const ProjectTimeline = () => {
-  const classes = useStyles()
-
+const MediaComp = ({ media, style }) => {
   return (
-    <Timeline align='alternate'>
-      <TimelineItem>
-        <TimelineOppositeContent>
-          <Typography variant='body2' color='textSecondary'>
-            9:30 am
-          </Typography>
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot>
-            <FastfoodIcon />
-          </TimelineDot>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>
-          <Paper elevation={3} className={classes.paper}>
-            <Typography variant='h6' component='h1'>
-              Eat
+    <>
+      {/^image.*$/.test(media.mime)
+        ? <img src={media.url} style={style} alt={media.alternativeText} />
+        : <video src={media.url} style={style} alt={media.alternativeText} />}
+    </>
+  )
+}
+
+const ProjectTimeline = ({ projects }) => {
+  const classes = useStyles()
+  const breakMd = useMediaQuery(theme => theme.breakpoints.down('md'))
+  return (
+    <Timeline align={`${breakMd ? 'left' : 'alternate'}`}>
+      {projects.map((project, index) => (
+        <TimelineItem key={project.id}>
+          <TimelineOppositeContent style={breakMd ? { flex: 0 } : { }}>
+            <Typography variant='body2' style={{ color: 'white' }}>
+              {project.date}
             </Typography>
-            <Typography>Because you need strength</Typography>
-          </Paper>
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineOppositeContent>
-          <Typography variant='body2' color='textSecondary'>
-            10:00 am
-          </Typography>
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot color='primary'>
-            <LaptopMacIcon />
-          </TimelineDot>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>
-          <Paper elevation={3} className={classes.paper}>
-            <Typography variant='h6' component='h1'>
-              Code
-            </Typography>
-            <Typography>Because it&apos;s awesome!</Typography>
-          </Paper>
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot color='primary' variant='outlined'>
-            <HotelIcon />
-          </TimelineDot>
-          <TimelineConnector className={classes.secondaryTail} />
-        </TimelineSeparator>
-        <TimelineContent>
-          <Paper elevation={3} className={classes.paper}>
-            <Typography variant='h6' component='h1'>
-              Sleep
-            </Typography>
-            <Typography>Because you need rest</Typography>
-          </Paper>
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot color='secondary'>
-            <RepeatIcon />
-          </TimelineDot>
-        </TimelineSeparator>
-        <TimelineContent>
-          <Paper elevation={3} className={classes.paper}>
-            <Typography variant='h6' component='h1'>
-              Repeat
-            </Typography>
-            <Typography>Because this is the life you love!</Typography>
-          </Paper>
-        </TimelineContent>
-      </TimelineItem>
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot color='primary'>
+              <Icon>{project.material_ui_icon_name}</Icon>
+            </TimelineDot>
+            <TimelineConnector className={index === 0 ? classes.secondaryTail : ''} />
+          </TimelineSeparator>
+          <TimelineContent style={{ maxWidth: '1000px' }}>
+            <Paper elevation={3} className={classes.paper}>
+              <Typography variant='h6' component='h1'>
+                {project.title}
+                <IconButton onClick={(e) => e.stopPropagation()}>
+                  <a target='blank' rel='noopener noreferrer' href={project.github_link}>
+                    <GitHubIcon />
+                  </a>
+                </IconButton>
+              </Typography>
+              <MediaComp
+                media={project.display_media}
+                style={{
+                  width: '10%'
+                }}
+              />
+              <Typography>{project.description}</Typography>
+            </Paper>
+          </TimelineContent>
+        </TimelineItem>
+      ))}
     </Timeline>
   )
 }

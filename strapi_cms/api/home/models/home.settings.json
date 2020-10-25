@@ -74,6 +74,9 @@
     },
     "values": {
       "collection": "values"
+    },
+    "projects": {
+      "collection": "projects"
     }
   }
 }
