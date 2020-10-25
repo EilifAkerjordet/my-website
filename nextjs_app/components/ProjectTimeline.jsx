@@ -40,7 +40,7 @@ const ProjectTimeline = ({ projects }) => {
       {projects.map((project, index) => (
         <TimelineItem key={project.id}>
           <TimelineOppositeContent style={breakMd ? { flex: 0 } : { }}>
-            <Typography variant='body2' style={{ color: 'white' }}>
+            <Typography variant='body2' style={{ color: 'white', width: '100%' }}>
               {project.date}
             </Typography>
           </TimelineOppositeContent>
@@ -63,7 +63,7 @@ const ProjectTimeline = ({ projects }) => {
               <MediaComp
                 media={project.display_media}
                 style={{
-                  width: '10%'
+                  width: '20%'
                 }}
               />
               <Typography>{project.description}</Typography>

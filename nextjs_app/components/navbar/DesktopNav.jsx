@@ -17,7 +17,7 @@ const DesktopNav = () => {
 
       <div className='filler' style={{ flexGrow: 1 }} />
 
-      <a href='https://github.com/EilifAkerjordet' target='_blank' rel='noopener noreferrer'style={{ textDecoration: 'none', color: 'inherit' }}>
+      <a href='https://github.com/EilifAkerjordet' target='_blank' rel='noopener noreferrer' style={{ textDecoration: 'none', color: 'inherit' }}>
         <IconButton edge='start' aria-label='Home button'>
           <GitHubIcon />
         </IconButton>
