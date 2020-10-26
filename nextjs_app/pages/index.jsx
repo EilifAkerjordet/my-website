@@ -110,20 +110,12 @@ const Index = ({ data }) => {
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={2.93}
-        speed={0.3}
-        onClick={() => parallaxRef.current.scrollTo(0)}
-        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-      >
-        <Typography gutterBottom variant='h4' style={{ fontWeight: 100 }}>Career / Project timeline</Typography>
-      </ParallaxLayer>
-
-      <ParallaxLayer
         offset={3.2}
         speed={-0.1}
         onClick={() => parallaxRef.current.scrollTo(0)}
         style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}
       >
+        <Typography gutterBottom variant='h4' style={{ fontWeight: 100 }}>Career / Project timeline</Typography>
         <ProjectTimeline projects={data.projects} />
       </ParallaxLayer>
       {/* PAGE CONTENT */}
