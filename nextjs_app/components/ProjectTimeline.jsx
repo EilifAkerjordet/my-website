@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import ReactMarkdown from 'react-markdown'
 import Timeline from '@material-ui/lab/Timeline'
@@ -14,21 +15,36 @@ import GitHubIcon from '@material-ui/icons/GitHub'
 import IconButton from '@material-ui/core/IconButton'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
+import MediaModal from './utils/MediaModal'
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: '6px 16px'
   },
   secondaryTail: {
     backgroundColor: theme.palette.secondary.main
+  },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  displayMedia: {
+    cursor: 'pointer'
   }
 }))
 
 const MediaComp = ({ media, style }) => {
+  const [modalOpen, setModalOpen] = useState()
+
+  const classes = useStyles()
   return (
     <>
       {/^image.*$/.test(media.mime)
-        ? <img src={media.url} style={style} alt={media.alternativeText} />
-        : <video src={media.url} style={style} alt={media.alternativeText} />}
+        ? <img className={classes.displayMedia} onClick={(e) => { e.stopPropagation(); setModalOpen(true) }} src={media.url} style={style} alt={media.alternativeText} />
+        : <video className={classes.displayMedia} onClick={(e) => { e.stopPropagation(); setModalOpen(true) }} src={media.url} style={style} alt={media.alternativeText} />}
+
+      <MediaModal media={media} open={modalOpen} setOpen={setModalOpen} />
     </>
   )
 }
@@ -69,13 +85,15 @@ const ProjectTimeline = ({ projects }) => {
                 <MediaComp
                   media={project.display_media}
                   style={{
-                    width: '20%'
+                    width: '30%'
                   }}
                 />
-                <ReactMarkdown
-                  escapeHtml={false}
-                  source={project.description}
-                />
+                <div style={{ textAlign: 'left' }}>
+                  <ReactMarkdown
+                    escapeHtml={false}
+                    source={project.description}
+                  />
+                </div>
               </Paper>
             </TimelineContent>
           </TimelineItem>

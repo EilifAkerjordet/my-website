@@ -54,15 +54,6 @@
       "plugin": "upload",
       "required": false
     },
-    "workflowTools_logos": {
-      "collection": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
     "backend_logos": {
       "collection": "file",
       "via": "related",
@@ -77,6 +68,15 @@
     },
     "projects": {
       "collection": "projects"
+    },
+    "dotfiles_teaser": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
     }
   }
 }

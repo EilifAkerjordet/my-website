@@ -6,9 +6,12 @@ import axios from 'axios'
 import MeCard from '../components/parallaxComps/MeCard'
 import SwitchTechButton from '../components/SwitchTechButton'
 import ProjectTimeline from '../components/ProjectTimeline'
+import CheckoutDotfiles from '../components/CheckoutDotfiles'
 
 import TechnologiesAndFrameWorks from '../components/TechnologiesAndFrameWorks'
 import MyValues from '../components/MyValues'
+import ParallaxArrow from '../components/utils/ParallaxArrow'
+import ScrollArrow from '../components/utils/ScrollArrow'
 
 const url = (name, wrap = false) => `${wrap ? 'url(' : ''}https://awv3node-homepage.surge.sh/build/assets/${name}.svg${wrap ? ')' : ''}`
 
@@ -19,12 +22,13 @@ const Index = ({ data }) => {
   return (
     <Parallax
       ref={parallaxRef}
-      pages={5}
+      pages={6}
       style={{
         backgroundColor: '#6593F5',
         height: '95vh',
         marginTop: '5vh',
-        width: '100vw'
+        width: '100vw',
+        position: 'absolute'
       }}
     >
       {/* PAGE BACKGROUNDS */}
@@ -32,14 +36,36 @@ const Index = ({ data }) => {
       <ParallaxLayer offset={2} speed={1} style={{ backgroundColor: '#0080FF' }} />
       <ParallaxLayer offset={3} speed={1} style={{ backgroundColor: '#0080FF' }} />
       <ParallaxLayer offset={4} speed={1} style={{ backgroundColor: '#0080FF' }} />
-      <ParallaxLayer offset={0} speed={0} factor={4} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
+      <ParallaxLayer offset={0} speed={0} factor={6} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
       {/* PAGE BACKGROUNDS */}
+
+      {/* SCROLL ARROWS */}
+      <ParallaxArrow
+        offset={0}
+        parallaxRef={parallaxRef}
+        to={1}
+        text='Tools and Tech'
+      />
+
+      <ParallaxArrow
+        offset={1}
+        parallaxRef={parallaxRef}
+        to={2}
+        text='Skillset and Values'
+      />
+
+      <ParallaxArrow
+        offset={2}
+        parallaxRef={parallaxRef}
+        to={3}
+        text='Career / Project timeline'
+      />
+      {/* SCROLL ARROWS */}
 
       {/* PAGE CONTENT */}
       <ParallaxLayer
         offset={0.2}
         speed={-0.2}
-        onClick={() => parallaxRef.current.scrollTo(1)}
         style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center' }}
       >
         <Typography variant='h1'>Hi, I'm Eilif!</Typography>
@@ -48,7 +74,6 @@ const Index = ({ data }) => {
       <ParallaxLayer
         offset={0.1}
         speed={0.6}
-        onClick={() => parallaxRef.current.scrollTo(1)}
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
       >
         <MeCard displayPic={data.display_pic} text={data.text_about_me} name={data.my_name} />
@@ -57,7 +82,6 @@ const Index = ({ data }) => {
       <ParallaxLayer
         offset={0.93}
         speed={0.3}
-        onClick={() => parallaxRef.current.scrollTo(2)}
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
       >
         <Typography
@@ -77,17 +101,16 @@ const Index = ({ data }) => {
       <ParallaxLayer
         offset={0.7}
         speed={-0.1}
-        onClick={() => parallaxRef.current.scrollTo(2)}
-        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1 }}
+        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 2 }}
       >
         <SwitchTechButton setTechComp={setTechComp} techComp={techComp} />
       </ParallaxLayer>
 
+
       <ParallaxLayer
         offset={1.35}
         speed={0.7}
-        onClick={() => parallaxRef.current.scrollTo(2)}
-        style={{ display: 'flex', justifyContent: 'center', alignItems: 'baseline', zIndex: 2, padding: theme.spacing(1) }}
+        style={{ display: 'flex', justifyContent: 'center', alignItems: 'baseline', padding: theme.spacing(1) }}
       >
         {techComp === 'center' && (
           <TechnologiesAndFrameWorks logosTwo={data.backend_logos} logosOne={data.frontend_logos} textOne='Frontend' textTwo='Backend' />
@@ -101,22 +124,42 @@ const Index = ({ data }) => {
       </ParallaxLayer>
 
       <ParallaxLayer
+        offset={2.1}
+        speed={0.3}
+        style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center' }}
+      >
+        <Typography
+          align='center'
+          component='h1'
+          gutterBottom
+          variant='h4'
+          style={{
+            width: '100%',
+            color: 'white',
+            fontWeight: 100
+          }}
+        >
+          My Skillset and Values
+        </Typography>
+      </ParallaxLayer>
+
+      <ParallaxLayer
         offset={2}
         speed={0.3}
-        onClick={() => parallaxRef.current.scrollTo(0)}
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
       >
         <MyValues values={data.values} />
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={3.2}
-        speed={-0.1}
-        onClick={() => parallaxRef.current.scrollTo(0)}
+        offset={3.8}
+        speed={0.5}
         style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}
       >
-        <Typography gutterBottom variant='h4' style={{ fontWeight: 100 }}>Career / Project timeline</Typography>
+        <Typography gutterBottom variant='h4' style={{ fontWeight: 100, color: 'white' }}>Career / Project timeline</Typography>
         <ProjectTimeline projects={data.projects} />
+        <CheckoutDotfiles image={data.dotfiles_teaser} />
+        <ScrollArrow scrollRef={parallaxRef} text='About Me' n={0} last />
       </ParallaxLayer>
       {/* PAGE CONTENT */}
     </Parallax>
