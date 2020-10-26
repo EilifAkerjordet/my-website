@@ -32,7 +32,8 @@ const Index = ({ data }) => {
       }}
     >
       {/* PAGE BACKGROUNDS */}
-      <ParallaxLayer offset={1} speed={1} style={{ backgroundColor: '#87BCDE' }} />
+      <ParallaxLayer offset={0} speed={1} style={{ backgroundColor: '#0080FF' }} />
+      <ParallaxLayer offset={1} speed={1} style={{ backgroundColor: '#0080FF' }} />
       <ParallaxLayer offset={2} speed={1} style={{ backgroundColor: '#0080FF' }} />
       <ParallaxLayer offset={3} speed={1} style={{ backgroundColor: '#0080FF' }} />
       <ParallaxLayer offset={4} speed={1} style={{ backgroundColor: '#0080FF' }} />
@@ -44,7 +45,7 @@ const Index = ({ data }) => {
         offset={0}
         parallaxRef={parallaxRef}
         to={1}
-        text='Tools and Tech'
+        text='Tools and Technologies'
       />
 
       <ParallaxArrow
@@ -66,7 +67,7 @@ const Index = ({ data }) => {
       <ParallaxLayer
         offset={0.2}
         speed={-0.2}
-        style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center' }}
+        style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', color: 'white' }}
       >
         <Typography variant='h1'>Hi, I'm Eilif!</Typography>
       </ParallaxLayer>
@@ -91,7 +92,8 @@ const Index = ({ data }) => {
           variant='h4'
           style={{
             width: '100%',
-            fontWeight: 100
+            fontWeight: 100,
+            color: 'white'
           }}
         >
           {data.parallax_2_header}
