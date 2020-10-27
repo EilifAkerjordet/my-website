@@ -24,15 +24,15 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - name: docker build
         run: |
-          docker build -f ./strapi_cms/Dockerfile.prod ./strapi_cms -t personal_website_strapi
+          docker build -f ./strapi_cms/Dockerfile.prod ./strapi_cms -t eilifakerjordet/personal-web-strapi:1.0.0
       - name: docker build next.js
         run: |
-          docker build -f ./nextjs_app/Dockerfile.prod ./nextjs_app -t personal_website_nextjs
+          docker build -f ./nextjs_app/Dockerfile.prod ./nextjs_app -t eilifakerjordet/personal-web-nextjs:1.0.0
       - name: docker build nginx
         run: |
-          docker build -f ./nginx/Dockerfile.prod ./nginx -t personal_website_nginx
+          docker build -f ./nginx/Dockerfile.prod ./nginx -t eilifakerjordet/personal-web-nginx:1.0.0
       - name: docker push
         run: |
-          docker push personal_website_strapi
-          docker push personal_website_nextjs
-          docker push personal_website_nginx
+          docker push eilifakerjordet/personal-web-strapi:1.0.0
+          docker push peilifakerjordet/personal-web-nextjs:1.0.0
+          docker push eilifakerjordet/personal-web-nginx:1.0.0
