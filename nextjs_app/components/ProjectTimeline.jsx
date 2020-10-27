@@ -53,7 +53,7 @@ const ProjectTimeline = ({ projects }) => {
   const classes = useStyles()
   const breakMd = useMediaQuery(theme => theme.breakpoints.down('md'))
   return (
-    <Timeline align={`${breakMd ? 'left' : 'alternate'}`}>
+    <Timeline align={`${breakMd ? 'left' : 'alternate'}`} style={{ flexGrow: 0 }}>
       {projects.map((project, index) => {
         const date = /^\w+\s(\w+ )\d+ (\d+)$/.exec(new Date(project.date).toDateString())
         const dateToShow = `${date[1]}${date[2]}`

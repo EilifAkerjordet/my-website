@@ -2,12 +2,13 @@ import { useRef, useState } from 'react'
 import { Parallax, ParallaxLayer } from 'react-spring/addons.cjs'
 import { useTheme } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
+import Hidden from '@material-ui/core/Hidden'
 import axios from 'axios'
+
 import MeCard from '../components/parallaxComps/MeCard'
 import SwitchTechButton from '../components/SwitchTechButton'
 import ProjectTimeline from '../components/ProjectTimeline'
 import CheckoutDotfiles from '../components/CheckoutDotfiles'
-
 import TechnologiesAndFrameWorks from '../components/TechnologiesAndFrameWorks'
 import MyValues from '../components/MyValues'
 import ParallaxArrow from '../components/utils/ParallaxArrow'
@@ -55,12 +56,15 @@ const Index = ({ data }) => {
         text='Skillset and Values'
       />
 
-      <ParallaxArrow
-        offset={2}
-        parallaxRef={parallaxRef}
-        to={3}
-        text='Career / Project timeline'
-      />
+      <Hidden mdDown>
+        <ParallaxArrow
+          offset={2}
+          parallaxRef={parallaxRef}
+          to={3}
+          text='Career / Project timeline'
+        />
+      </Hidden>
+
       {/* SCROLL ARROWS */}
 
       {/* PAGE CONTENT */}
@@ -103,11 +107,10 @@ const Index = ({ data }) => {
       <ParallaxLayer
         offset={0.7}
         speed={-0.1}
-        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 2 }}
+        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
       >
         <SwitchTechButton setTechComp={setTechComp} techComp={techComp} />
       </ParallaxLayer>
-
 
       <ParallaxLayer
         offset={1.35}
@@ -148,20 +151,24 @@ const Index = ({ data }) => {
       <ParallaxLayer
         offset={2}
         speed={0.3}
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'center' }}
       >
         <MyValues values={data.values} />
+        <Hidden mdUp>
+          <ScrollArrow scrollRef={parallaxRef} text='Career / Project timeline' absolute n={3} />
+        </Hidden>
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={3.8}
+        offset={3.1}
+        factor={data.projects.length - 1}
         speed={0.5}
-        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}
+        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}
       >
         <Typography gutterBottom variant='h4' style={{ fontWeight: 100, color: 'white' }}>Career / Project timeline</Typography>
         <ProjectTimeline projects={data.projects} />
         <CheckoutDotfiles image={data.dotfiles_teaser} />
-        <ScrollArrow scrollRef={parallaxRef} text='About Me' n={0} last />
+        <ScrollArrow scrollRef={parallaxRef} text='About Me' n={0} last absolute />
       </ParallaxLayer>
       {/* PAGE CONTENT */}
     </Parallax>

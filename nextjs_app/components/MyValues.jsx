@@ -11,10 +11,10 @@ const MyValues = ({ values }) => {
     <Grid container spacing={2} style={{ justifyContent: 'space-around' }}>
       {values.map(value => (
         <Grid key={value.id} item xs={12} sm={6} md={3} style={{ padding: theme.spacing(2) }}>
-          <Paper style={{ textAlign: 'center', padding: theme.spacing(1) }}>
+          <Paper style={{ textAlign: 'center', padding: theme.spacing(2), minHeight: '370px' }}>
             <Icon style={{ fontSize: theme.spacing(10) }}>{value.material_ui_icon_name}</Icon>
             <Typography gutterBottom variant='h5'>{value.value_title}</Typography>
-            <Typography>{value.value_text}</Typography>
+            <Typography style={{ textAlign: 'left' }}>{value.value_text}</Typography>
           </Paper>
         </Grid>
       ))}

@@ -1,7 +1,7 @@
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import Typography from '@material-ui/core/Typography'
 
-const ScrollArrow = ({ text, scrollRef, n, last }) => {
+const ScrollArrow = ({ text, scrollRef, n, last, absolute }) => {
   const handleScroll = () => {
     scrollRef.current.scrollTo(n)
   }
@@ -15,7 +15,7 @@ const ScrollArrow = ({ text, scrollRef, n, last }) => {
         alignItems: 'center',
         cursor: 'pointer',
         color: 'white',
-        position: `${last ? '' : 'absolute'}`,
+        position: `${absolute ? '' : 'absolute'}`,
         marginTop: `${last ? '50px' : ''}`,
         textAlign: 'center',
         bottom: 20

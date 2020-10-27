@@ -6,7 +6,7 @@ const ParallaxArrow = ({ offset, parallaxRef, text, to }) => {
     <ParallaxLayer
       offset={offset}
       speed={1}
-      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}
+      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}
     >
       <ScrollArrow scrollRef={parallaxRef} text={text} n={to} />
     </ParallaxLayer>

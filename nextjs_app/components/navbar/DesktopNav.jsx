@@ -10,7 +10,7 @@ const DesktopNav = () => {
       <Link as='/' href='/'>
         <a style={{ textDecoration: 'none', color: 'inherit' }}>
           <IconButton style={{ borderRadius: 0 }} edge='start' aria-label='Home button'>
-            <Typography>eilifakerjordet.io</Typography>
+            <Typography>eilifakerjordet.tech</Typography>
           </IconButton>
         </a>
       </Link>

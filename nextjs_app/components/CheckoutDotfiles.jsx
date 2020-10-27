@@ -20,8 +20,7 @@ const CheckoutDotfiles = ({ image }) => {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          alignContent: 'center',
-          marginTop: theme.spacing(3)
+          alignContent: 'center'
         }}
       >
         <Typography style={{ display: 'flex', alignItems: 'center' }}>Check also out my dotfiles:
