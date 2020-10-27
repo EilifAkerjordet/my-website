@@ -11,6 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: docker login
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - name: docker build
         run: |
           docker build -f ./strapi_cms/Dockerfile.prod ./strapi_cms -t personal_website_strapi
@@ -20,3 +26,8 @@ jobs:
       - name: docker build nginx
         run: |
           docker build -f ./nginx/Dockerfile.prod ./nginx -t personal_website_nginx
+      - name: docker push
+        run: |
+          docker push personal_website_strapi
+          docker push personal_website_nextjs
+          docker push personal_website_nginx
