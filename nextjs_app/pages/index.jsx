@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { Parallax, ParallaxLayer } from 'react-spring/addons.cjs'
 import { useTheme } from '@material-ui/core'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 import Typography from '@material-ui/core/Typography'
 import Hidden from '@material-ui/core/Hidden'
 import axios from 'axios'
@@ -19,15 +20,15 @@ const url = (name, wrap = false) => `${wrap ? 'url(' : ''}https://awv3node-homep
 const Index = ({ data }) => {
   const parallaxRef = useRef(null)
   const [techComp, setTechComp] = useState('center')
+  const breakMd = useMediaQuery(theme => theme.breakpoints.down('md'))
   const theme = useTheme()
   return (
     <Parallax
       ref={parallaxRef}
-      pages={6}
+      pages={7}
       style={{
         backgroundColor: '#6593F5',
-        height: '95vh',
-        marginTop: '5vh',
+        height: '100vh',
         width: '100vw',
         position: 'absolute'
       }}
@@ -38,7 +39,7 @@ const Index = ({ data }) => {
       <ParallaxLayer offset={2} speed={1} style={{ backgroundColor: '#0080FF' }} />
       <ParallaxLayer offset={3} speed={1} style={{ backgroundColor: '#0080FF' }} />
       <ParallaxLayer offset={4} speed={1} style={{ backgroundColor: '#0080FF' }} />
-      <ParallaxLayer offset={0} speed={0} factor={6} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
+      <ParallaxLayer offset={0} speed={0} factor={7} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
       {/* PAGE BACKGROUNDS */}
 
       {/* SCROLL ARROWS */}
@@ -85,14 +86,14 @@ const Index = ({ data }) => {
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={0.93}
-        speed={0.3}
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        offset={1.1}
+        speed={0.7}
+        style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-start', height: '100vh', zIndex: 1 }}
       >
         <Typography
-          align='center'
           component='h1'
           gutterBottom
+          align='center'
           variant='h4'
           style={{
             width: '100%',
@@ -102,21 +103,7 @@ const Index = ({ data }) => {
         >
           {data.parallax_2_header}
         </Typography>
-      </ParallaxLayer>
-
-      <ParallaxLayer
-        offset={0.7}
-        speed={-0.1}
-        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-      >
-        <SwitchTechButton setTechComp={setTechComp} techComp={techComp} />
-      </ParallaxLayer>
-
-      <ParallaxLayer
-        offset={1.35}
-        speed={0.7}
-        style={{ display: 'flex', justifyContent: 'center', alignItems: 'baseline', padding: theme.spacing(1) }}
-      >
+        <SwitchTechButton setTechComp={setTechComp} techComp={techComp} style={{ marginTop: '75px' }} />
         {techComp === 'center' && (
           <TechnologiesAndFrameWorks logosTwo={data.backend_logos} logosOne={data.frontend_logos} textOne='Frontend' textTwo='Backend' />
         )}
@@ -131,7 +118,8 @@ const Index = ({ data }) => {
       <ParallaxLayer
         offset={2.1}
         speed={0.3}
-        style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center' }}
+        factor={3}
+        style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-start' }}
       >
         <Typography
           align='center'
@@ -141,27 +129,21 @@ const Index = ({ data }) => {
           style={{
             width: '100%',
             color: 'white',
+            marginBottom: '8%',
             fontWeight: 100
           }}
         >
           My Skillset and Values
         </Typography>
-      </ParallaxLayer>
-
-      <ParallaxLayer
-        offset={2}
-        speed={0.3}
-        style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'center' }}
-      >
         <MyValues values={data.values} />
         <Hidden mdUp>
-          <ScrollArrow scrollRef={parallaxRef} text='Career / Project timeline' absolute n={3} />
+          <ScrollArrow scrollRef={parallaxRef} text='Career / Project timeline' absolute n={4} />
         </Hidden>
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={3.1}
-        factor={data.projects.length - 1}
+        offset={breakMd ? 4.1 : 3.1}
+        factor={data.projects.length}
         speed={0.5}
         style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}
       >

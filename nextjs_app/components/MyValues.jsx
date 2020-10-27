@@ -4,11 +4,11 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import { useTheme } from '@material-ui/core'
 
-const MyValues = ({ values }) => {
+const MyValues = ({ values, style }) => {
   const theme = useTheme()
 
   return (
-    <Grid container spacing={2} style={{ justifyContent: 'space-around' }}>
+    <Grid container spacing={2} style={{ ...style, justifyContent: 'space-around' }}>
       {values.map(value => (
         <Grid key={value.id} item xs={12} sm={6} md={3} style={{ padding: theme.spacing(2) }}>
           <Paper style={{ textAlign: 'center', padding: theme.spacing(2), minHeight: '370px' }}>

@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   }
 })
 
-const SwitchTechButton = ({ setTechComp, techComp }) => {
+const SwitchTechButton = ({ setTechComp, techComp, style }) => {
   const classes = useStyles()
 
   const handleChange = (event, selectedEl) => {
@@ -19,7 +19,7 @@ const SwitchTechButton = ({ setTechComp, techComp }) => {
   }
 
   return (
-    <Paper>
+    <Paper style={style}>
       <ToggleButtonGroup
         exclusive
         value={techComp}
