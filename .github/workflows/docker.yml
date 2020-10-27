@@ -34,5 +34,5 @@ jobs:
       - name: docker push
         run: |
           docker push eilifakerjordet/personal-web-strapi:1.0.0
-          docker push peilifakerjordet/personal-web-nextjs:1.0.0
+          docker push eilifakerjordet/personal-web-nextjs:1.0.0
           docker push eilifakerjordet/personal-web-nginx:1.0.0
