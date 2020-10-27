@@ -11,6 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: make nextjs .env.local
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_API_URL: ${{ secrets.API_URL }}
+          file_name: ./nextjs_app/.env.local
       - name: docker login
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
