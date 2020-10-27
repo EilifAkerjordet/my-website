@@ -1,0 +1,22 @@
+name: Create and push Docker images
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: docker build
+        run: |
+          docker build -f Dockerfile.prod ./strapi_cms -t personal_website_strapi
+      - name: docker build next.js
+        run: |
+          docker build -f Dockerfile.prod ./nextjs_app -t personal_website_nextjs
+      - name: docker build nginx
+        run: |
+          docker build -f Dockerfile.prod ./nginx -t personal_website_nginx
