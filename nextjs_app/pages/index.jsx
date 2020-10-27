@@ -157,7 +157,7 @@ const Index = ({ data }) => {
   )
 }
 
-export async function getServerSideProps () {
+export async function getStaticProps () {
   try {
     const { data } = await axios.get(`${process.env.API_URL}/home`)
     const sortedProjects = data.projects.sort((a, b) => new Date(b.date) - new Date(a.date))
