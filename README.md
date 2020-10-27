@@ -1,4 +1,4 @@
-# Boilerplate for React with Next.js and Google Analytics
-Simple boilerplate
+# My personal website
 
-deployed here: [[https://reactnextgoogleanalyticsboiler.vercel.app/]]
+* Deployed using digital ocean and docker-compose
+* Nginx reverse proxy with Strapi CMS as /admin route
