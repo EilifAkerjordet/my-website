@@ -4,8 +4,9 @@ FROM node:alpine
 # Set working directory
 WORKDIR /app
 
-ENV DOCKERIZE_VERSION v0.6.0
+RUN apk add --no-cache openssl
 
+ENV DOCKERIZE_VERSION v0.6.1
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
@@ -18,11 +19,7 @@ RUN yarn install --production=true
 # Copy all files
 COPY ./ ./
 
-# Build app
-CMD dockerize -wait tcp://strapi_personal_site:1337 -timeout 60m yarn build
-
-# Expose the listening port
 EXPOSE 3000
 
-# Run npm start script when container starts
-CMD ["yarn", "start"]
+# Build app
+CMD dockerize -wait tcp://strapi_personal_site:1337 -timeout 60m yarn build &&  yarn start
