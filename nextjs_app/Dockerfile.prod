@@ -22,4 +22,4 @@ COPY ./ ./
 EXPOSE 3000
 
 # Build app
-CMD dockerize -wait tcp://strapi_personal_site:1337 -timeout 60m yarn build &&  yarn start
+CMD dockerize -wait tcp://strapi_personal_site:1337 -timeout 60m yarn build &&  exit
