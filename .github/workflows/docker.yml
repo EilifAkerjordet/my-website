@@ -34,4 +34,4 @@ jobs:
         run: |
           docker push eilifakerjordet/strapi_personal_site:1.0.0
           docker push eilifakerjordet/nextjs_personal_site:1.0.0
-          docker push eilifakerjordet/ngninx_personal_site:1.0.0
+          docker push eilifakerjordet/nginx_personal_site:1.0.0
