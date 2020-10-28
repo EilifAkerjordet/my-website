@@ -19,10 +19,10 @@ RUN yarn install --production=true
 COPY ./ ./
 
 # Build app
-RUN yarn build
+CMD dockerize -wait tcp://strapi_personal_site:1337 -timeout 60m yarn build
 
 # Expose the listening port
 EXPOSE 3000
 
 # Run npm start script when container starts
-CMD dockerize -wait tcp://strapi_personal_site:1337 -timeout 60m yarn start
+CMD ["yarn", "start"]
