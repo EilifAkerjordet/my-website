@@ -24,9 +24,13 @@ jobs:
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
-      - name: docker-compose build build
+      - name: docker-compose build
         run: |
           docker-compose -f docker-compose.prod.yml up --build
+
+      - name: docker-compose down
+        run: |
+          docker-compose -f docker-compose.prod.yml down
 
       - name: docker push
         run: |
