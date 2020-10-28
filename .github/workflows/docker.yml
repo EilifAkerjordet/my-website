@@ -26,9 +26,11 @@ jobs:
 
       - name: docker-compose build
         run: |
-          docker-compose -f docker-compose.prod.yml up \
-          --abort-on-container-exit \
-          --exit-code-from nextjs_personal_site
+          docker-compose -f docker-compose.prod.yml up --build -d
+
+      - name: Stop containers
+        if: always()
+        run: docker-compose down
 
       - name: docker push
         run: |
