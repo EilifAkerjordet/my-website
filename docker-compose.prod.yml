@@ -12,7 +12,7 @@ services:
       - strapi_personal_site
       - nextjs_personal_site
     ports:
-      - '80:80'
+      - 80:80
 
   nextjs_personal_site:
     container_name: nextjs_personal_site

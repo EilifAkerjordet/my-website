@@ -21,5 +21,6 @@ COPY ./ ./
 
 EXPOSE 3000
 
-# Build app
-CMD dockerize -wait tcp://strapi_personal_site:1337 -timeout 60m yarn build &&  yarn start
+# Check if github action, if true run build if false dont run build. Regardless, wait for strapi to be up.
+
+CMD dockerize -wait tcp://strapi_personal_site:1337 -timeout 60m yarn build && yarn start

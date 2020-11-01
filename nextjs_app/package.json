@@ -21,10 +21,10 @@
     "axios": "^0.20.0",
     "clsx": "latest",
     "create-emotion-server": "latest",
-    "next": "^9.5.3",
+    "next": "latest",
     "prop-types": "^15.6.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
     "react-markdown": "^5.0.2",
     "react-spring": "^7.2.8"
   },
