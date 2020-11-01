@@ -7,7 +7,7 @@ import { Spring } from 'react-spring'
 const LogoPaper = ({ logo }) => {
   const theme = useTheme()
   return (
-    <img src={logo.url} alt={logo.alternativeText} style={{ width: '100%', maxWidth: theme.spacing(13) }} />
+    <img src={logo.formats.thumbnail.url} alt={logo.alternativeText} style={{ width: '100%', maxWidth: theme.spacing(13) }} />
   )
 }
 
@@ -38,7 +38,7 @@ const TechnologiesAndFrameWorks = ({ logosOne, logosTwo, textOne, textTwo }) => 
               <Typography gutterBottom align='center'>{textTwo}</Typography>
               <Divider />
               {logosTwo.map(logo => (
-                <LogoPaper logo={logo} />
+                <LogoPaper key={logo.id} logo={logo} />
               ))}
             </>
           )}

@@ -35,14 +35,14 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const MediaComp = ({ media, style }) => {
-  const [modalOpen, setModalOpen] = useState()
+  const [modalOpen, setModalOpen] = useState(false)
 
   const classes = useStyles()
   return (
     <>
       {/^image.*$/.test(media.mime)
-        ? <img className={classes.displayMedia} onClick={(e) => { e.stopPropagation(); setModalOpen(true) }} src={media.url} style={style} alt={media.alternativeText} />
-        : <video className={classes.displayMedia} onClick={(e) => { e.stopPropagation(); setModalOpen(true) }} src={media.url} style={style} alt={media.alternativeText} />}
+        ? <img className={classes.displayMedia} onClick={(e) => { e.stopPropagation(); setModalOpen(true) }} src={media.formats.thumbnail.url} style={style} alt={media.alternativeText} />
+        : <video className={classes.displayMedia} onClick={(e) => { e.stopPropagation(); setModalOpen(true) }} src={media.formats.thumbnail.url} style={style} alt={media.alternativeText} />}
 
       <MediaModal media={media} open={modalOpen} setOpen={setModalOpen} />
     </>

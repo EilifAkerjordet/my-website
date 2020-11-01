@@ -31,7 +31,7 @@ const MeCard = ({ text, name, displayPic }) => {
           <Avatar
             alt='eilif akerjordet'
             className={classes.large}
-            src={displayPic.url}
+            src={displayPic.formats.thumbnail.url}
             style={{
               marginLeft: '-25px',
               marginTop: '-70px'
