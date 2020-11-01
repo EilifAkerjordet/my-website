@@ -4,11 +4,15 @@ import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   text: {
-    color: 'black'
+    color: 'black',
+    height: '50px'
+  },
+  font: {
+    fontSize: theme.breakpoints.down('md') ? 14 : 'inherit'
   }
-})
+}))
 
 const SwitchTechButton = ({ setTechComp, techComp, style }) => {
   const classes = useStyles()
@@ -19,7 +23,7 @@ const SwitchTechButton = ({ setTechComp, techComp, style }) => {
   }
 
   return (
-    <Paper style={style}>
+    <Paper style={{ ...style }}>
       <ToggleButtonGroup
         exclusive
         value={techComp}
@@ -27,13 +31,13 @@ const SwitchTechButton = ({ setTechComp, techComp, style }) => {
         aria-label='view technologies'
       >
         <ToggleButton className={classes.text} value='left' aria-label='General technologies'>
-          <Typography>General</Typography>
+          <Typography className={classes.font}>General</Typography>
         </ToggleButton>
         <ToggleButton className={classes.text} value='center' aria-label='Technologies and frameworks'>
-          <Typography>Technologies and frameworks</Typography>
+          <Typography className={classes.font}>Technologies and frameworks</Typography>
         </ToggleButton>
         <ToggleButton className={classes.text} value='right' aria-label='Tools'>
-          <Typography>Tools</Typography>
+          <Typography className={classes.font}>Tools</Typography>
         </ToggleButton>
       </ToggleButtonGroup>
     </Paper>

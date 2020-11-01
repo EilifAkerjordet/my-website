@@ -46,12 +46,14 @@ const Index = ({ data }) => {
         text='Tools and Technologies'
       />
 
-      <ParallaxArrow
-        offset={1}
-        parallaxRef={parallaxRef}
-        to={2}
-        text='Skillset and Values'
-      />
+      <Hidden mdDown>
+        <ParallaxArrow
+          offset={1}
+          parallaxRef={parallaxRef}
+          to={2}
+          text='Skillset and Values'
+        />
+      </Hidden>
 
       <Hidden mdDown>
         <ParallaxArrow
@@ -84,6 +86,7 @@ const Index = ({ data }) => {
       <ParallaxLayer
         offset={1}
         speed={0.1}
+        factor={breakMd ? 2 : 1}
         style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-start', marginTop: '100px', zIndex: 1 }}
       >
         <Typography
@@ -101,18 +104,19 @@ const Index = ({ data }) => {
         </Typography>
         <SwitchTechButton setTechComp={setTechComp} techComp={techComp} style={{ marginTop: '75px' }} />
         {techComp === 'center' && (
-          <TechnologiesAndFrameWorks logosTwo={data.backend_logos} logosOne={data.frontend_logos} textOne='Frontend' textTwo='Backend' />
+          <TechnologiesAndFrameWorks scrollRef={parallaxRef} logosTwo={data.backend_logos} logosOne={data.frontend_logos} textOne='Frontend' textTwo='Backend' />
         )}
         {techComp === 'left' && (
-          <TechnologiesAndFrameWorks logosOne={data.general_logos} textOne='General skills' />
+          <TechnologiesAndFrameWorks scrollRef={parallaxRef} logosOne={data.general_logos} textOne='General skills' />
         )}
         {techComp === 'right' && (
-          <TechnologiesAndFrameWorks logosOne={data.tools_logos} textOne='Tools' />
+          <TechnologiesAndFrameWorks scrollRef={parallaxRef}logosOne={data.tools_logos} textOne='Tools' />
         )}
+
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={2}
+        offset={breakMd ? 2.4 : 2}
         speed={breakMd ? 0.3 : 0.1}
         factor={3}
         style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-start', marginTop: '100px' }}
@@ -133,14 +137,14 @@ const Index = ({ data }) => {
         </Typography>
         <MyValues values={data.values} />
         <Hidden mdUp>
-          <ScrollArrow scrollRef={parallaxRef} text='Career / Project timeline' absolute n={4} />
+          <ScrollArrow scrollRef={parallaxRef} text='Career / Project timeline' absolute n={4.2} />
         </Hidden>
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={breakMd ? 4 : 3}
+        offset={breakMd ? 4.2 : 3}
         factor={data.projects.length}
-        speed={0.5}
+        speed={breakMd ? 0.1 : 0.1}
         style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', marginTop: '100px' }}
       >
         <Typography gutterBottom variant='h4' style={{ fontWeight: 100, color: 'white' }}>Career / Project timeline</Typography>

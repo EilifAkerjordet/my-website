@@ -1,7 +1,7 @@
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import Typography from '@material-ui/core/Typography'
 
-const ScrollArrow = ({ text, scrollRef, n, last, absolute }) => {
+const ScrollArrow = ({ style, text, scrollRef, n, last, absolute }) => {
   const handleScroll = () => {
     scrollRef.current.scrollTo(n)
   }
@@ -9,6 +9,7 @@ const ScrollArrow = ({ text, scrollRef, n, last, absolute }) => {
     <div
       onClick={handleScroll}
       style={{
+        ...style,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
