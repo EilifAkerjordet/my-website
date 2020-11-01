@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react'
 import { Parallax, ParallaxLayer } from 'react-spring/addons.cjs'
-import { useTheme } from '@material-ui/core'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import Typography from '@material-ui/core/Typography'
 import Hidden from '@material-ui/core/Hidden'
@@ -21,11 +20,10 @@ const Index = ({ data }) => {
   const parallaxRef = useRef(null)
   const [techComp, setTechComp] = useState('center')
   const breakMd = useMediaQuery(theme => theme.breakpoints.down('md'))
-  const theme = useTheme()
   return (
     <Parallax
       ref={parallaxRef}
-      pages={7}
+      pages={breakMd ? 8 : 6}
       style={{
         backgroundColor: '#6593F5',
         height: '100vh',
@@ -37,8 +35,6 @@ const Index = ({ data }) => {
       <ParallaxLayer offset={0} speed={1} style={{ backgroundColor: '#0080FF' }} />
       <ParallaxLayer offset={1} speed={1} style={{ backgroundColor: '#0080FF' }} />
       <ParallaxLayer offset={2} speed={1} style={{ backgroundColor: '#0080FF' }} />
-      <ParallaxLayer offset={3} speed={1} style={{ backgroundColor: '#0080FF' }} />
-      <ParallaxLayer offset={4} speed={1} style={{ backgroundColor: '#0080FF' }} />
       <ParallaxLayer offset={0} speed={0} factor={7} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
       {/* PAGE BACKGROUNDS */}
 
@@ -86,9 +82,9 @@ const Index = ({ data }) => {
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={1.1}
-        speed={0.7}
-        style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-start', height: '100vh', zIndex: 1 }}
+        offset={1}
+        speed={0.1}
+        style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-start', marginTop: '100px', zIndex: 1 }}
       >
         <Typography
           component='h1'
@@ -116,10 +112,10 @@ const Index = ({ data }) => {
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={2.1}
-        speed={0.3}
+        offset={2}
+        speed={breakMd ? 0.3 : 0.1}
         factor={3}
-        style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-start' }}
+        style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-start', marginTop: '100px' }}
       >
         <Typography
           align='center'
@@ -142,10 +138,10 @@ const Index = ({ data }) => {
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={breakMd ? 4.1 : 3.1}
+        offset={breakMd ? 4 : 3}
         factor={data.projects.length}
         speed={0.5}
-        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}
+        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', marginTop: '100px' }}
       >
         <Typography gutterBottom variant='h4' style={{ fontWeight: 100, color: 'white' }}>Career / Project timeline</Typography>
         <ProjectTimeline projects={data.projects} />
