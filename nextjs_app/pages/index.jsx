@@ -27,14 +27,15 @@ const Index = ({ data }) => {
       style={{
         backgroundColor: '#6593F5',
         height: '100vh',
-        width: '100vw',
-        position: 'absolute'
+        width: '100vw'
       }}
     >
       {/* PAGE BACKGROUNDS */}
       <ParallaxLayer offset={0} speed={1} style={{ backgroundColor: '#0080FF' }} />
       <ParallaxLayer offset={1} speed={1} style={{ backgroundColor: '#0080FF' }} />
       <ParallaxLayer offset={2} speed={1} style={{ backgroundColor: '#0080FF' }} />
+      <ParallaxLayer offset={3} speed={1} style={{ backgroundColor: '#0080FF' }} />
+      <ParallaxLayer offset={4} speed={1} style={{ backgroundColor: '#0080FF' }} />
       <ParallaxLayer offset={0} speed={0} factor={7} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
       {/* PAGE BACKGROUNDS */}
 
@@ -84,10 +85,10 @@ const Index = ({ data }) => {
       </ParallaxLayer>
 
       <ParallaxLayer
-        offset={1}
+        offset={1.1}
         speed={0.1}
         factor={breakMd ? 2 : 1}
-        style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-start', marginTop: '100px', zIndex: 1 }}
+        style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-start' }}
       >
         <Typography
           component='h1'
@@ -110,7 +111,7 @@ const Index = ({ data }) => {
           <TechnologiesAndFrameWorks scrollRef={parallaxRef} logosOne={data.general_logos} textOne='General skills' />
         )}
         {techComp === 'right' && (
-          <TechnologiesAndFrameWorks scrollRef={parallaxRef}logosOne={data.tools_logos} textOne='Tools' />
+          <TechnologiesAndFrameWorks scrollRef={parallaxRef} logosOne={data.tools_logos} textOne='Tools' />
         )}
 
       </ParallaxLayer>
